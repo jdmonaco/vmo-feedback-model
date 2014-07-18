@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.6: http://docutils.sourceforge.net/" />
+<title>VMO Feedback Model on ModelDB</title>
+<meta name="authors" content="Joseph D. Monaco [1]  James J. Knierim [1]  Kechen Zhang [2]" />
+<meta name="organization" content="[1] Zanvyl Krieger Mind/Brain Institute, Department of Neuroscience, Johns Hopkins University, Baltimore, MD, USA; [2] Department of Biomedical Engineering, Johns Hopkins School of Medicine, Baltimore, MD, USA" />
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 5951 2009-05-18 18:03:10Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left{
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: left }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="vmo-feedback-model-on-modeldb">
+<h1 class="title">VMO Feedback Model on ModelDB</h1>
+<h2 class="subtitle" id="sensory-feedback-in-a-multiple-oscillator-model-of-place-cell-activity">Sensory feedback in a multiple oscillator model of place cell activity</h2>
+<table class="docinfo" frame="void" rules="none">
+<col class="docinfo-name" />
+<col class="docinfo-content" />
+<tbody valign="top">
+<tr><th class="docinfo-name">Authors:</th>
+<td>Joseph D. Monaco [1]
+<br />James J. Knierim [1]
+<br />Kechen Zhang [2]</td></tr>
+<tr><th class="docinfo-name">Contact:</th>
+<td><a class="first last reference external" href="mailto:jmonaco&#64;jhu.edu">jmonaco&#64;jhu.edu</a></td></tr>
+<tr><th class="docinfo-name">Organization:</th>
+<td>[1] Zanvyl Krieger Mind/Brain Institute, Department of
+Neuroscience, Johns Hopkins University, Baltimore, MD, USA; [2] Department
+of Biomedical Engineering, Johns Hopkins School of Medicine, Baltimore, MD,
+USA</td></tr>
+</tbody>
+</table>
+<div class="abstract topic">
+<p class="topic-title first">Abstract</p>
+<p>Mammals navigate by integrating self-motion signals ('path
+integration') and occasionally fixing on familiar environmental landmarks.
+The rat hippocampus is a model system of spatial representation in which
+place cells are thought to integrate both sensory and spatial information
+from entorhinal cortex. The localized firing fields of hippocampal place
+cells and entorhinal grid cells demonstrate a phase relationship with the
+local theta (6-10 Hz) rhythm that may be a temporal signature of path
+integration. However, encoding self-motion in the phase of theta
+oscillations requires high temporal precision and is susceptible to
+idiothetic noise, neuronal variability, and a changing environment. We
+present a model based on oscillatory interference theory, previously studied
+in the context of grid cells, in which transient temporal synchronization
+among a pool of path-integrating theta oscillators produces hippocampal-like
+place fields. We hypothesize that a spatiotemporally extended sensory
+interaction with external cues modulates feedback to the theta oscillators.
+We implement a form of this cue-driven feedback and show that it can restore
+learned fixed-points in the phase code of position. A single cue can
+smoothly reset oscillator phases to correct for both systematic errors and
+continuous noise in path integration. Further, simulations in which local
+and global cues are rotated against each other reveal a phase-code mechanism
+in which conflicting cue arrangements can reproduce experimentally observed
+distributions of 'partial remapping' responses. This abstract model
+demonstrates that phase-code feedback can provide stability to the temporal
+coding of position during navigation and may contribute to the
+context-dependence of hippocampal spatial representations. While the
+anatomical substrates of these processes have not been fully characterized,
+our findings suggest several signatures that can be evaluated in future
+experiments.</p>
+</div>
+<div class="section" id="installation">
+<h1>Installation</h1>
+<p>Please see the <tt class="docutils literal">INSTALL</tt> file for details, but you essentially need to have the
+Enthought EPD python distribution installed. Then you unzip this archive, go into
+the new directory and run <tt class="docutils literal">sudo python setup.py install</tt>. The model can then be
+run interactively in an IPython session.</p>
+</div>
+<div class="section" id="libraries">
+<h1>Libraries</h1>
+<p>Here is a brief description of the main modules and classes:</p>
+<div class="section" id="top-level-modules">
+<h2>Top-level Modules</h2>
+<dl class="docutils">
+<dt><tt class="docutils literal">vmo</tt></dt>
+<dd><tt class="docutils literal">VMOModel</tt>: main model simulation class</dd>
+<dt><tt class="docutils literal">double_rotation</tt></dt>
+<dd><tt class="docutils literal">VMODoubleRotation</tt>: subclass that performs double rotation</dd>
+<dt><tt class="docutils literal">session</tt></dt>
+<dd><tt class="docutils literal">VMOSession</tt>: container that computes and stores simulation results</dd>
+<dt><tt class="docutils literal">compare</tt></dt>
+<dd>Functions for comparing remapping responses</dd>
+<dt><tt class="docutils literal">placemap</tt></dt>
+<dd><tt class="docutils literal">CirclePlaceMap</tt>: class that computes place fields</dd>
+<dt><tt class="docutils literal">error</tt></dt>
+<dd>Function definitions for solutions to the phase error integral</dd>
+</dl>
+</div>
+<div class="section" id="subpackages">
+<h2>Subpackages</h2>
+<dl class="docutils">
+<dt><tt class="docutils literal">core</tt></dt>
+<dd><ul class="first last simple">
+<li>Base classes for models, analyses, and time-series data</li>
+</ul>
+</dd>
+<dt><tt class="docutils literal">figures</tt></dt>
+<dd><ul class="first last">
+<li><p class="first"><tt class="docutils literal">PathIntFigure</tt>: basis for Figure 2</p>
+</li>
+<li><p class="first"><tt class="docutils literal">RemappingFigure</tt>: basis for Figure 3</p>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal">FeedbackFigure</tt>: basis for Figure 5</dt>
+<dd><ul class="first last simple">
+<li><tt class="docutils literal">VMOTrackModel</tt>: model subclass that tracks phase information</li>
+<li><tt class="docutils literal">VMOToyModel</tt>: implements idealized linear trajectory</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first"><tt class="docutils literal">PhaseNoiseFigure</tt>: basis for Figure 6</p>
+</li>
+<li><p class="first"><tt class="docutils literal">MismatchFigure</tt> <a class="footnote-reference" href="#ip" id="id1">[1]</a>: basis for Figures 7 and 8</p>
+</li>
+</ul>
+</dd>
+<dt><tt class="docutils literal">remapping</tt></dt>
+<dd><ul class="first last simple">
+<li><tt class="docutils literal">VMOExperiment</tt> <a class="footnote-reference" href="#ip" id="id2">[1]</a>: parallelized double rotation simulations</li>
+<li><tt class="docutils literal">MismatchAnalysis</tt>: comprehensive remapping comparisons</li>
+<li><tt class="docutils literal">MismatchTrends</tt>: remapping trends across mismatch angles</li>
+</ul>
+</dd>
+<dt><tt class="docutils literal">tools</tt></dt>
+<dd><ul class="first last simple">
+<li>A collection of supporting utility functions</li>
+</ul>
+</dd>
+<dt><tt class="docutils literal">trajectory</tt></dt>
+<dd><ul class="first last simple">
+<li><tt class="docutils literal">CircleTrackData</tt>: loads trajectory data, computes laps, etc.</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils footnote" frame="void" id="ip" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> <p>These classes farm simulations out to IPython ipengine instances running
+on your machine. You must first start them in another terminal:</p>
+<pre class="literal-block">
+$ ipcluster local -n C
+</pre>
+<p class="last">Set <tt class="docutils literal">C</tt> to the number of cores available on your machine.</p>
+</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="example-usage">
+<h1>Example Usage</h1>
+<p>You can run the model itself, specifying various parameters, or you can run
+pre-cooked analyses that were used as the basis of figures in the paper.</p>
+<div class="section" id="running-the-model">
+<h2>Running the model</h2>
+<p>Start IPython in <tt class="docutils literal"><span class="pre">-pylab</span></tt> mode:</p>
+<pre class="literal-block">
+$ ipython -pylab
+</pre>
+<p>Then, import the libraries and create a model instance:</p>
+<pre class="literal-block">
+In [0]: from vmo_feedback import *
+In [1]: model = VMOModel()
+</pre>
+<p>It will automatically load the trajectory data. To see all the user-settable
+parameters, you can print the model:</p>
+<pre class="literal-block">
+In [2]: print model
+VMOModel(Model) object
+--------------------------------
+Parameters:
+        C_W : 0.050000000000000003
+        N_cues : 3
+        N_cues_distal : 3
+        N_cues_local : 3
+        N_outputs : 500
+        N_theta : 1000
+        cue_offset : 0.0
+        cue_std : 0.15707963267948966
+        distal_cue_std : 0.15707963267948966
+        distal_offset : 0.0
+        done : False
+        epsilon : 0.050000000000000003
+        gamma_distal : 0.46101227797811462
+        gamma_local : 0.46101227797811462
+        init_random : True
+        lambda_range : (100, 200)
+        local_cue_std : 0.15707963267948966
+        local_offset : 0.0
+        monitoring : True
+        omega : 7
+        pause : False
+        refresh_fixed_points : True
+Tracking:
+        C_distal, C_local, I, active_distal_cue, x, y, alpha,
+        active_local_cue, vel
+</pre>
+<p>In parameter names above, parameters with <tt class="docutils literal">local</tt> and <tt class="docutils literal">distal</tt> control one of
+the two cue sets (local rotate CCW, distal CW) to allow for independent
+manipulation:</p>
+<pre class="literal-block">
+C_W            feedforward connectivity and
+N_theta        number of theta oscillators
+N_outputs      the number of output units; each receives input from
+                   C_W*N_theta oscillators
+N_cues         number of cues per cue set
+cue_offset     starting point on the track for laying out cues
+cue_std        cue size (s.d.) in radians
+epsilon        error tolerance
+lambda_range   the range of spatial scales (multiplied by 2PI)
+gamma          peak cue gains; if not specified, these gains are set
+                   automatically based on epsilon
+init_random    whether each trial gets randomized initial phases
+omega          frequency of the carrier signal.
+</pre>
+<p>The values shown are the defaults used for the paper (aside from cue
+manipulations, etc.). The tracked variables are time-series data that are saved
+from the simulation:</p>
+<pre class="literal-block">
+C_*            cue interaction coefficients
+I              summed oscillatory inputs for each output
+x, y           trajectory position
+vel            instantaneous velocity vector
+alpha          track angle
+active_*_cue   index number of the currently active cue
+</pre>
+<p>Parameters can be changed by passing them as keyword arguments to the
+constructor. To simulate only 200 oscillators, you would call
+<tt class="docutils literal">VMOModel(N_theta=200)</tt>.</p>
+<p>Run the simulation:</p>
+<pre class="literal-block">
+In [3]: model.advance()
+</pre>
+<p>Look at the tracked data:</p>
+<pre class="literal-block">
+In [4]: data = model.post_mortem()
+In [5]: print data.tracking
+In [6]: subplot(221)
+In [7]: plot(data.x, data.y, 'k-')
+</pre>
+<p>Plot cue coefficients for the local and distal cue sets:</p>
+<pre class="literal-block">
+In [8]: subplot(222)
+In [9]: scatter(x=data.x, y=data.y, c=data.C_local, s=1, linewidths=0)
+In [10]: subplot(224)
+In [11]: scatter(x=data.x, y=data.y, c=data.C_distal, s=1, linewidths=0)
+</pre>
+<p>Now compute the output responses based on the amplitude envelope of excitation.
+These are computed and stored in <tt class="docutils literal">VMOSession</tt> objects based on the simulation
+results:</p>
+<pre class="literal-block">
+In [12]: session = VMOSession(model)
+</pre>
+<p>Get the population response matrix and plot the place fields:</p>
+<pre class="literal-block">
+In [13]: subplot(223)
+In [14]: R = session.get_population_matrix()
+In [15]: plot(R.T, 'k-')
+In [16]: xlim(0, 360)
+</pre>
+<p>The <tt class="docutils literal">VMODoubleRotation</tt> is a subclass that automatically performs double
+rotations across a series of mismatch angles. Running double rotation and
+computing the responses is as easy as:</p>
+<pre class="literal-block">
+In [17]: drmodel = VMODoubleRotation()
+In [18]: drmodel.advance_all()
+In [19]: drsessions = VMOSession.get_session_list(drmodel)
+</pre>
+<p>The analysis subclasses in the remapping subpackage encapsulate double rotation
+experiment simulations and various remapping analyses.</p>
+</div>
+<div class="section" id="running-figure-analyses">
+<h2>Running figure analyses</h2>
+<p>To run the figure analyses, you simply create an analysis object and run it by
+calling it with analysis parameters. The single-cue feedback analysis is
+performed by the <tt class="docutils literal">FeedbackFigure</tt> analysis class:</p>
+<pre class="literal-block">
+In [20]: fig = FeedbackFigure(desc='test')
+In [21]: fig.collect_data?
+</pre>
+<p>The first command creates an analysis object with the description 'test'. The
+second command (with the <tt class="docutils literal">?</tt>) tells IPython to print out meta-data about the
+<tt class="docutils literal">collect_data</tt> method. This is the method that actually performs the analysis
+when you call the object, so this tells you the available parameters along with
+their descriptions. We could run the analysis with different cue sizes:</p>
+<pre class="literal-block">
+In [22]: fig(cue_sizes=[5, 25])
+</pre>
+<p>This performs the simulations, collects data for the figures, and stores data,
+statistics, and an <em>analysis.log</em> file in the analysis directory. When that
+completes, you can bring up the resulting figure and save it:</p>
+<pre class="literal-block">
+In [23]: fig.view()
+In [24]: fig.save_plots()
+</pre>
+<p>Running the <tt class="docutils literal">view</tt> method renders the figures, outputs RGB image files, and
+saves a <em>figure.log</em> file in the analysis directory. Some of the figures have
+parameter arguments to change the figure. You will have to use the
+<tt class="docutils literal">create_plots</tt> method, as this is what the <tt class="docutils literal">view</tt> method actually calls. To see
+the figure parameters and make changes:</p>
+<pre class="literal-block">
+In [25]: fig.create_plots?
+In [26]: fig.create_plots(...)
+</pre>
+<p>The same process can be used for the other figure analysis classes. You can
+create your own analyses by subclassing from <tt class="docutils literal">core.analysis.BaseAnalysis</tt> and
+implementing the <tt class="docutils literal">collect_data</tt> and <tt class="docutils literal">create_plots</tt> methods.</p>
+<hr class="docutils" />
+<p>Please explore the code, and let me know at <a class="reference external" href="mailto:jmonaco&#64;jhu.edu">jmonaco&#64;jhu.edu</a> if there are any major issues. There are no guarantees
+that this code will work perfectly everywhere.</p>
+<p>Enjoy.</p>
+</div>
+</div>
+</div>
+</body>
+</html>

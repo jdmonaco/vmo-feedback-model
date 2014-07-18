@@ -1,0 +1,65 @@
+=================================
+ VMO Feedback Model Installation
+=================================
+
+Software Requirements
+---------------------
+
+The model and analysis code consist of the Python package ``vmo_feedback`` and its
+subpackages (``core``, ``figures``, ``remapping``, ``tools``, and ``trajectory``).
+You need to have a basic Python environment set up for scientific computing,
+including numpy, scipy, traits, matplotlib, and PIL for image output. Ideally, you
+should run the code interactively at an IPython command prompt.
+
+The easiest way to set up a complete Python environment is to install the
+Enthought Python Distribution (EPD). The model code was developed and tested on
+EPD v6.2. The latest version of the EPD can be found here:
+
+    * Standard: http://www.enthought.com/products/getepd.php
+    * Academic: http://www.enthought.com/products/edudownload.php
+
+It is available for all major operating systems. The ``vmo_feedback`` software
+should also run on all major platforms, but any platform-specific bugs or errors
+can be emailed to me at `jmonaco@jhu.edu <mailto:jmonaco@jhu.edu>`_.
+
+If you don't want to install the entire EPD, the most critical libraries needed
+can be downloaded and installed from their respective websites:
+
+    * Python: http://www.python.org/getit/
+    * NumPy/Scipy: http://www.scipy.org/Download
+    * Matplotlib: http://matplotlib.sourceforge.net/
+    * IPython: http://ipython.scipy.org/moin/
+    * PIL: http://www.pythonware.com/products/pil/
+    * ETS/Traits: http://code.enthought.com/source/
+    
+This can be done, but it really is a pain. The EPD is a big download, but it Just
+Works(TM).
+
+
+Software Installation
+---------------------
+
+Download the zip-file archive from ModelDB. Then you need to extract the archive
+and run the *setup.py* file from a terminal::
+
+    $ tar xzf vmo_feedback.tar.gz
+    $ cd vmo_feedback/
+    $ sudo python setup.py install
+
+This will ask for your administrator password and install the ``vmo_feedback``
+package at the standard location on your computer for third-party python
+libraries.
+
+Now, you can test to make sure everything is working properly by importing the
+package in IPython::
+
+    $ ipython -pylab
+    In [0]: from vmo_feedback import *
+
+Starting IPython in the ``-pylab`` mode will enable a Matlab(R)-like environment
+with figure, plotting, and basic analysis commands available. The first time you
+do this import, the software will ask you to set up a directory where analysis
+output will be saved. It can be any directory that you will have full access to.
+When the import is finished, you can run the ``whos`` command in IPython to see
+the simulation and analysis classes that have been loaded (most of the classes
+needed are loaded by default).

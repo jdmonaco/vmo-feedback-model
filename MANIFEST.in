@@ -1,0 +1,2 @@
+include INSTALL install.html LICENSE README readme.html
+include src/trajectory/circle_track.csv src/trajectory/center.xy
