@@ -1,39 +1,20 @@
-# Sensory feedback in a multiple oscillator model of place cell activity 
+# Theta-Oscillator Place Cell Model
 
-Authors: Joseph D. Monaco [1], 
-         James J. Knierim [1], 
-         Kechen Zhang [2]
+This repository contains a Python package of the source code for the model described in this paper:
+
+#### [Sensory feedback, error correction, and remapping in a multiple oscillator model of place-cell activity](http://journal.frontiersin.org/Journal/10.3389/fncom.2011.00039/abstract)
+
+Joseph D. Monaco [1], James J. Knierim [1], and Kechen Zhang [2]
 
 [1] Zanvyl Krieger Mind/Brain Institute, Department of Neuroscience, Johns Hopkins University, Baltimore, MD, USA; [2]
 Department of Biomedical Engineering, Johns Hopkins School of Medicine, Baltimore, MD, USA
 
-Mammals navigate by integrating self-motion signals ('path integration') and occasionally fixing on familiar
-environmental landmarks. The rat hippocampus is a model system of spatial representation in which place cells are
-thought to integrate both sensory and spatial information from entorhinal cortex. The localized firing fields of
-hippocampal place cells and entorhinal grid cells demonstrate a phase relationship with the local theta (6-10 Hz)
-rhythm that may be a temporal signature of path integration. However, encoding self-motion in the phase of theta
-oscillations requires high temporal precision and is susceptible to idiothetic noise, neuronal variability, and a
-changing environment. We present a model based on oscillatory interference theory, previously studied in the context of
-grid cells, in which transient temporal synchronization among a pool of path-integrating theta oscillators produces
-hippocampal-like place fields. We hypothesize that a spatiotemporally extended sensory interaction with external cues
-modulates feedback to the theta oscillators. We implement a form of this cue-driven feedback and show that it can
-restore learned fixed-points in the phase code of position. A single cue can smoothly reset oscillator phases to
-correct for both systematic errors and continuous noise in path integration. Further, simulations in which local and
-global cues are rotated against each other reveal a phase-code mechanism in which conflicting cue arrangements can
-reproduce experimentally observed distributions of 'partial remapping' responses. This abstract model demonstrates that
-phase-code feedback can provide stability to the temporal coding of position during navigation and may contribute to
-the context-dependence of hippocampal spatial representations. While the anatomical substrates of these processes have
-not been fully characterized, our findings suggest several signatures that can be evaluated in future experiments.
-
-
-
 ## Installation
 
-Please see the ``INSTALL`` file for details, but all you essentially need is a scientific Python distribution such as
-[Enthought Canopy](https://www.enthought.com/products/canopy/) or [Continuum
-Anaconda](https://store.continuum.io/cshop/anaconda/). In the cloned repository, you can run the distutils installation
-with the typical ``python setup.py install``. The model can then be run interactively in an IPython session.
-
+You will need a scientific Python distribution such as [Enthought Canopy](https://www.enthought.com/products/canopy/)
+or [Continuum Anaconda](https://store.continuum.io/cshop/anaconda/). In the cloned repository, you can run the standard
+distutils installation with something like ``python setup.py install``. The model can then be run interactively in an
+IPython session.
 
 ## Libraries
 

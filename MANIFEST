@@ -1,7 +1,5 @@
-INSTALL
 LICENSE
 README
-install.html
 readme.html
 setup.py
 src/__init__.py
