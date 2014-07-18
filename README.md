@@ -1,8 +1,4 @@
-VMO Feedback Model on ModelDB
-===============================================================================
-
-Sensory feedback in a multiple oscillator model of place cell activity 
--------------------------------------------------------------------------------
+# Sensory feedback in a multiple oscillator model of place cell activity 
 
 Authors: Joseph D. Monaco [1], 
          James J. Knierim [1], 
@@ -31,8 +27,7 @@ not been fully characterized, our findings suggest several signatures that can b
 
 
 
-Installation
-------------
+## Installation
 
 Please see the ``INSTALL`` file for details, but all you essentially need is a scientific Python distribution such as
 [Enthought Canopy](https://www.enthought.com/products/canopy/) or [Continuum
@@ -40,13 +35,11 @@ Anaconda](https://store.continuum.io/cshop/anaconda/). In the cloned repository,
 with the typical ``python setup.py install``. The model can then be run interactively in an IPython session.
 
 
-Libraries
----------
+## Libraries
 
 Here is a brief description of the main modules and classes:
 
-Top-level Modules
------------------
+### Top-level Modules
 
 - ``vmo``
     - ``VMOModel``: main model simulation class
@@ -61,8 +54,7 @@ Top-level Modules
 - ``error``
     - Function definitions for solutions to the phase error integral
     
-Subpackages
-~~~~~~~~~~~
+### Subpackages
 
 - ``core`` 
     - Base classes for models, analyses, and time-series data
@@ -91,14 +83,12 @@ machine. You must first start them in another terminal::
 Set ``C`` to the number of cores available on your machine.
     
 
-Example Usage
--------------
+### Example Usage
 
 You can run the model itself, specifying various parameters, or you can run pre-cooked analyses that were used as the
 basis of figures in the paper.
 
-Running the model
-~~~~~~~~~~~~~~~~~
+#### Running the model
 
 Start IPython in ``-pylab`` mode:
 
@@ -142,7 +132,7 @@ It will automatically load the trajectory data. To see all the user-settable par
             active_local_cue, vel
 
 In parameter names above, parameters with ``local`` and ``distal`` control one of the two cue sets (local rotate CCW,
-distal CW) to allow for independent manipulation::
+distal CW) to allow for independent manipulation:
 
     C_W            feedforward connectivity and 
     N_theta        number of theta oscillators
@@ -158,9 +148,8 @@ distal CW) to allow for independent manipulation::
     init_random    whether each trial gets randomized initial phases
     omega          frequency of the carrier signal.
 
-The values shown are the defaults used for the paper (aside from cue
-manipulations, etc.). The tracked variables are time-series data that are saved
-from the simulation::
+The values shown are the defaults used for the paper (aside from cue manipulations, etc.). The tracked variables are
+time-series data that are saved from the simulation:
 
     C_*            cue interaction coefficients
     I              summed oscillatory inputs for each output
@@ -169,44 +158,41 @@ from the simulation::
     alpha          track angle
     active_*_cue   index number of the currently active cue
 
-Parameters can be changed by passing them as keyword arguments to the
-constructor. To simulate only 200 oscillators, you would call
-``VMOModel(N_theta=200)``.
+Parameters can be changed by passing them as keyword arguments to the constructor. To simulate only 200 oscillators,
+you would call ``VMOModel(N_theta=200)``.
 
-Run the simulation::
+Run the simulation:
 
     In [3]: model.advance()
 
-Look at the tracked data::
+Look at the tracked data:
 
     In [4]: data = model.post_mortem()
     In [5]: print data.tracking
     In [6]: subplot(221)
     In [7]: plot(data.x, data.y, 'k-')
 
-Plot cue coefficients for the local and distal cue sets::
+Plot cue coefficients for the local and distal cue sets:
 
     In [8]: subplot(222)
     In [9]: scatter(x=data.x, y=data.y, c=data.C_local, s=1, linewidths=0)
     In [10]: subplot(224)
     In [11]: scatter(x=data.x, y=data.y, c=data.C_distal, s=1, linewidths=0)
 
-Now compute the output responses based on the amplitude envelope of excitation.
-These are computed and stored in ``VMOSession`` objects based on the simulation
-results::
+Now compute the output responses based on the amplitude envelope of excitation. These are computed and stored in
+``VMOSession`` objects based on the simulation results:
 
     In [12]: session = VMOSession(model)
 
-Get the population response matrix and plot the place fields::
+Get the population response matrix and plot the place fields:
 
     In [13]: subplot(223)
     In [14]: R = session.get_population_matrix()
     In [15]: plot(R.T, 'k-')
     In [16]: xlim(0, 360)
 
-The ``VMODoubleRotation`` is a subclass that automatically performs double
-rotations across a series of mismatch angles. Running double rotation and
-computing the responses is as easy as::
+The ``VMODoubleRotation`` is a subclass that automatically performs double rotations across a series of mismatch
+angles. Running double rotation and computing the responses is as easy as:
 
     In [17]: drmodel = VMODoubleRotation()
     In [18]: drmodel.advance_all()
@@ -216,8 +202,7 @@ The analysis subclasses in the remapping subpackage encapsulate double rotation
 experiment simulations and various remapping analyses. 
 
 
-Running figure analyses
-~~~~~~~~~~~~~~~~~~~~~~~
+#### Running figure analyses
 
 To run the figure analyses, you simply create an analysis object and run it by
 calling it with analysis parameters. The single-cue feedback analysis is
@@ -226,30 +211,25 @@ performed by the ``FeedbackFigure`` analysis class::
     In [20]: fig = FeedbackFigure(desc='test')
     In [21]: fig.collect_data?
 
-The first command creates an analysis object with the description 'test'. The
-second command (with the ``?``) tells IPython to print out meta-data about the
-``collect_data`` method. This is the method that actually performs the analysis
-when you call the object, so this tells you the available parameters along with
-their descriptions. We could run the analysis with different cue sizes::
+The first command creates an analysis object with the description 'test'. The second command (with the ``?``) tells
+IPython to print out meta-data about the ``collect_data`` method. This is the method that actually performs the
+analysis when you call the object, so this tells you the available parameters along with their descriptions. We could
+run the analysis with different cue sizes::
 
     In [22]: fig(cue_sizes=[5, 25])
 
-This performs the simulations, collects data for the figures, and stores data,
-statistics, and an *analysis.log* file in the analysis directory. When that
-completes, you can bring up the resulting figure and save it::
+This performs the simulations, collects data for the figures, and stores data, statistics, and an *analysis.log* file
+in the analysis directory. When that completes, you can bring up the resulting figure and save it::
 
     In [23]: fig.view()
     In [24]: fig.save_plots()
 
-Running the ``view`` method renders the figures, outputs RGB image files, and
-saves a *figure.log* file in the analysis directory. Some of the figures have
-parameter arguments to change the figure. You will have to use the
-``create_plots`` method, as this is what the ``view`` method actually calls. To see
-the figure parameters and make changes::
+Running the ``view`` method renders the figures, outputs RGB image files, and saves a *figure.log* file in the analysis
+directory. Some of the figures have parameter arguments to change the figure. You will have to use the ``create_plots``
+method, as this is what the ``view`` method actually calls. To see the figure parameters and make changes::
 
     In [25]: fig.create_plots?
     In [26]: fig.create_plots(...)
 
-The same process can be used for the other figure analysis classes. You can
-create your own analyses by subclassing from ``core.analysis.BaseAnalysis`` and
-implementing the ``collect_data`` and ``create_plots`` methods.
+The same process can be used for the other figure analysis classes. You can create your own analyses by subclassing
+from ``core.analysis.BaseAnalysis`` and implementing the ``collect_data`` and ``create_plots`` methods.
