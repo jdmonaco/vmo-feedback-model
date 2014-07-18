@@ -1,59 +1,43 @@
-===============================================================================
 VMO Feedback Model on ModelDB
 ===============================================================================
--------------------------------------------------------------------------------
+
 Sensory feedback in a multiple oscillator model of place cell activity 
 -------------------------------------------------------------------------------
 
-:Authors: Joseph D. Monaco [1], 
-          James J. Knierim [1], 
-          Kechen Zhang [2]
+Authors: Joseph D. Monaco [1], 
+         James J. Knierim [1], 
+         Kechen Zhang [2]
 
-:Contact: jmonaco@jhu.edu
+[1] Zanvyl Krieger Mind/Brain Institute, Department of Neuroscience, Johns Hopkins University, Baltimore, MD, USA; [2]
+Department of Biomedical Engineering, Johns Hopkins School of Medicine, Baltimore, MD, USA
 
-:Organization: [1] Zanvyl Krieger Mind/Brain Institute, Department of
-    Neuroscience, Johns Hopkins University, Baltimore, MD, USA; [2] Department 
-    of Biomedical Engineering, Johns Hopkins School of Medicine, Baltimore, MD, 
-    USA
-
-:Abstract: Mammals navigate by integrating self-motion signals ('path
-    integration') and occasionally fixing on familiar environmental landmarks.
-    The rat hippocampus is a model system of spatial representation in which
-    place cells are thought to integrate both sensory and spatial information
-    from entorhinal cortex. The localized firing fields of hippocampal place
-    cells and entorhinal grid cells demonstrate a phase relationship with the
-    local theta (6-10 Hz) rhythm that may be a temporal signature of path
-    integration. However, encoding self-motion in the phase of theta
-    oscillations requires high temporal precision and is susceptible to
-    idiothetic noise, neuronal variability, and a changing environment. We
-    present a model based on oscillatory interference theory, previously studied
-    in the context of grid cells, in which transient temporal synchronization
-    among a pool of path-integrating theta oscillators produces hippocampal-like
-    place fields. We hypothesize that a spatiotemporally extended sensory
-    interaction with external cues modulates feedback to the theta oscillators.
-    We implement a form of this cue-driven feedback and show that it can restore
-    learned fixed-points in the phase code of position. A single cue can
-    smoothly reset oscillator phases to correct for both systematic errors and
-    continuous noise in path integration. Further, simulations in which local
-    and global cues are rotated against each other reveal a phase-code mechanism
-    in which conflicting cue arrangements can reproduce experimentally observed
-    distributions of 'partial remapping' responses. This abstract model
-    demonstrates that phase-code feedback can provide stability to the temporal
-    coding of position during navigation and may contribute to the
-    context-dependence of hippocampal spatial representations. While the
-    anatomical substrates of these processes have not been fully characterized,
-    our findings suggest several signatures that can be evaluated in future
-    experiments.
+Mammals navigate by integrating self-motion signals ('path integration') and occasionally fixing on familiar
+environmental landmarks. The rat hippocampus is a model system of spatial representation in which place cells are
+thought to integrate both sensory and spatial information from entorhinal cortex. The localized firing fields of
+hippocampal place cells and entorhinal grid cells demonstrate a phase relationship with the local theta (6-10 Hz)
+rhythm that may be a temporal signature of path integration. However, encoding self-motion in the phase of theta
+oscillations requires high temporal precision and is susceptible to idiothetic noise, neuronal variability, and a
+changing environment. We present a model based on oscillatory interference theory, previously studied in the context of
+grid cells, in which transient temporal synchronization among a pool of path-integrating theta oscillators produces
+hippocampal-like place fields. We hypothesize that a spatiotemporally extended sensory interaction with external cues
+modulates feedback to the theta oscillators. We implement a form of this cue-driven feedback and show that it can
+restore learned fixed-points in the phase code of position. A single cue can smoothly reset oscillator phases to
+correct for both systematic errors and continuous noise in path integration. Further, simulations in which local and
+global cues are rotated against each other reveal a phase-code mechanism in which conflicting cue arrangements can
+reproduce experimentally observed distributions of 'partial remapping' responses. This abstract model demonstrates that
+phase-code feedback can provide stability to the temporal coding of position during navigation and may contribute to
+the context-dependence of hippocampal spatial representations. While the anatomical substrates of these processes have
+not been fully characterized, our findings suggest several signatures that can be evaluated in future experiments.
 
 
 
 Installation
 ------------
 
-Please see the ``INSTALL`` file for details, but you essentially need to have the
-Enthought EPD python distribution installed. Then you unzip this archive, go into
-the new directory and run ``sudo python setup.py install``. The model can then be
-run interactively in an IPython session.
+Please see the ``INSTALL`` file for details, but all you essentially need is a scientific Python distribution such as
+[Enthought Canopy](https://www.enthought.com/products/canopy/) or [Continuum
+Anaconda](https://store.continuum.io/cshop/anaconda/). In the cloned repository, you can run the distutils installation
+with the typical ``python setup.py install``. The model can then be run interactively in an IPython session.
 
 
 Libraries
@@ -64,25 +48,25 @@ Here is a brief description of the main modules and classes:
 Top-level Modules
 ~~~~~~~~~~~~~~~~~
 
-``vmo``
-    ``VMOModel``: main model simulation class
-``double_rotation``
-    ``VMODoubleRotation``: subclass that performs double rotation
-``session``
-    ``VMOSession``: container that computes and stores simulation results
-``compare``
-    Functions for comparing remapping responses
-``placemap``
-    ``CirclePlaceMap``: class that computes place fields
-``error``
-    Function definitions for solutions to the phase error integral
+- ``vmo``
+    - ``VMOModel``: main model simulation class
+- ``double_rotation``
+    - ``VMODoubleRotation``: subclass that performs double rotation
+- ``session``
+    - ``VMOSession``: container that computes and stores simulation results
+- ``compare``
+    - Functions for comparing remapping responses
+- ``placemap``
+    - ``CirclePlaceMap``: class that computes place fields
+- ``error``
+    - Function definitions for solutions to the phase error integral
     
 Subpackages
 ~~~~~~~~~~~
 
-``core`` 
+- ``core`` 
     - Base classes for models, analyses, and time-series data
-``figures``
+- ``figures``
     - ``PathIntFigure``: basis for Figure 2
     - ``RemappingFigure``: basis for Figure 3
     - ``FeedbackFigure``: basis for Figure 5
@@ -90,44 +74,42 @@ Subpackages
         * ``VMOToyModel``: implements idealized linear trajectory
     - ``PhaseNoiseFigure``: basis for Figure 6
     - ``MismatchFigure`` [#ip]_: basis for Figures 7 and 8
-``remapping``
+- ``remapping``
     - ``VMOExperiment`` [#ip]_: parallelized double rotation simulations
     - ``MismatchAnalysis``: comprehensive remapping comparisons
     - ``MismatchTrends``: remapping trends across mismatch angles
-``tools``
+- ``tools``
     - A collection of supporting utility functions
-``trajectory``
+- ``trajectory``
     - ``CircleTrackData``: loads trajectory data, computes laps, etc.
     
-.. [#ip] 
-   These classes farm simulations out to IPython ipengine instances running
-   on your machine. You must first start them in another terminal::
+The MismatchFigure and VMOExperiment classes farm simulations out to IPython ipengine instances running on your
+machine. You must first start them in another terminal::
 
       $ ipcluster local -n C
 
-   Set ``C`` to the number of cores available on your machine.
+Set ``C`` to the number of cores available on your machine.
     
 
 Example Usage
 -------------
 
-You can run the model itself, specifying various parameters, or you can run
-pre-cooked analyses that were used as the basis of figures in the paper.
+You can run the model itself, specifying various parameters, or you can run pre-cooked analyses that were used as the
+basis of figures in the paper.
 
 Running the model
 ~~~~~~~~~~~~~~~~~
 
-Start IPython in ``-pylab`` mode::
+Start IPython in ``-pylab`` mode:
 
     $ ipython -pylab
 
-Then, import the libraries and create a model instance::
+Then, import the libraries and create a model instance:
 
     In [0]: from vmo_feedback import *
     In [1]: model = VMOModel()
 
-It will automatically load the trajectory data. To see all the user-settable
-parameters, you can print the model::
+It will automatically load the trajectory data. To see all the user-settable parameters, you can print the model:
 
     In [2]: print model
     VMOModel(Model) object
@@ -159,9 +141,8 @@ parameters, you can print the model::
             C_distal, C_local, I, active_distal_cue, x, y, alpha, 
             active_local_cue, vel
 
-In parameter names above, parameters with ``local`` and ``distal`` control one of
-the two cue sets (local rotate CCW, distal CW) to allow for independent
-manipulation::
+In parameter names above, parameters with ``local`` and ``distal`` control one of the two cue sets (local rotate CCW,
+distal CW) to allow for independent manipulation::
 
     C_W            feedforward connectivity and 
     N_theta        number of theta oscillators
@@ -272,11 +253,3 @@ the figure parameters and make changes::
 The same process can be used for the other figure analysis classes. You can
 create your own analyses by subclassing from ``core.analysis.BaseAnalysis`` and
 implementing the ``collect_data`` and ``create_plots`` methods.
-
-----
-
-Please explore the code, and let me know at `jmonaco@jhu.edu
-<mailto:jmonaco@jhu.edu>`_ if there are any major issues. There are no guarantees
-that this code will work perfectly everywhere.
-
-Enjoy.
